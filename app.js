@@ -12,7 +12,7 @@ app.use("/api/products", product_routes);
 
 const start = async () => {
   try {
-    await connectDb();
+    await connectDb(process.env.MONGO_URL);
     app.listen(PORT, () => {
       console.log(`server is running on ${PORT}`);
     });
