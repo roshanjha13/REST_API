@@ -6,6 +6,7 @@ const ProductJson = require("./product.json");
 const start = async () => {
   try {
     await connectDb(process.env.MONGO_URL);
+    await Product.deleteMany();
     await Product.create(ProductJson);
     console.log("success");
   } catch (error) {
