@@ -1,7 +1,7 @@
 const Product = require("../models/product");
 
 const getAllProducts = async (req, res) => {
-  const { company, productName, featured, sort } = req.query;
+  const { company, productName, featured, sort, select } = req.query;
   const queryObject = {};
 
   if (company) {
@@ -22,7 +22,13 @@ const getAllProducts = async (req, res) => {
     apiData = apiData.sort(sortFix);
   }
 
+  if (select) {
+    let selectFix = select.split(",").join(" ");
+    apiData = apiData.select(selectFix);
+  }
+
   const product = await apiData;
+
   res.status(200).json({ product });
 };
 //- for desc by default aesc
