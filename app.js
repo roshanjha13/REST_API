@@ -3,15 +3,11 @@ const dotenv = require("dotenv").config();
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Hi i am live");
-});
-
 const PORT = process.env.PORT;
 
-// app.listen(PORT, () => {
-//   console.log(`server is running on ${PORT}`);
-// });
+const product_routes = require("./routes/product");
+
+app.use("/api/products", product_routes);
 
 const start = async () => {
   try {
