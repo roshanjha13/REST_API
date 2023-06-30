@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
+const connectDb = require("./configDB/connect");
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use("/api/products", product_routes);
 
 const start = async () => {
   try {
+    await connectDb();
     app.listen(PORT, () => {
       console.log(`server is running on ${PORT}`);
     });
